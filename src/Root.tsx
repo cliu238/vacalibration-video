@@ -2,6 +2,8 @@ import "./index.css";
 import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
+import { VacalibrationVideo } from "./VacalibrationVideo/VacalibrationVideo";
+import { TOTAL_DURATION, VIDEO_CONFIG } from "./VacalibrationVideo/constants";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -41,6 +43,16 @@ export const RemotionRoot: React.FC = () => {
           logoColor1: "#91dAE2" as const,
           logoColor2: "#86A8E7" as const,
         }}
+      />
+
+      {/* VA-Calibration Methodology Video */}
+      <Composition
+        id="VacalibrationVideo"
+        component={VacalibrationVideo}
+        durationInFrames={TOTAL_DURATION}
+        fps={VIDEO_CONFIG.fps}
+        width={VIDEO_CONFIG.width}
+        height={VIDEO_CONFIG.height}
       />
     </>
   );
