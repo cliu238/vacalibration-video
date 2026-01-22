@@ -3,7 +3,8 @@ import { Composition } from "remotion";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
 import { VacalibrationVideo } from "./VacalibrationVideo/VacalibrationVideo";
-import { TOTAL_DURATION, VIDEO_CONFIG } from "./VacalibrationVideo/constants";
+import { VIDEO_CONFIG } from "./VacalibrationVideo/constants";
+import { calculateMetadata, DEFAULT_TIMING } from "./VacalibrationVideo/calculate-metadata";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -49,10 +50,14 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="VacalibrationVideo"
         component={VacalibrationVideo}
-        durationInFrames={TOTAL_DURATION}
+        durationInFrames={DEFAULT_TIMING.totalDuration}
         fps={VIDEO_CONFIG.fps}
         width={VIDEO_CONFIG.width}
         height={VIDEO_CONFIG.height}
+        defaultProps={{
+          timing: DEFAULT_TIMING,
+        }}
+        calculateMetadata={calculateMetadata}
       />
     </>
   );

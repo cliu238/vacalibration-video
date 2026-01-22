@@ -1,8 +1,8 @@
 import React from 'react';
 import { Sequence } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/Inter';
-import { loadFont as loadJetBrainsMono } from '@remotion/google-fonts/JetBrainsMono';
-import { SCENE_TIMING, AUDIO_FILES, AUDIO_DELAYS, AUDIO_VOLUME } from './constants';
+import '@remotion/google-fonts/JetBrainsMono';
+import { AUDIO_FILES, AUDIO_DELAYS, AUDIO_VOLUME } from './constants';
 import { SceneAudio } from './components/shared/SceneAudio';
 import { Scene1_Title } from './scenes/Scene1_Title';
 import { Scene2_Problem } from './scenes/Scene2_Problem';
@@ -11,12 +11,16 @@ import { Scene4_Math } from './scenes/Scene4_Math';
 import { Scene5_Results } from './scenes/Scene5_Results';
 import { Scene6_CTA } from './scenes/Scene6_CTA';
 import { Scene7_Outro } from './scenes/Scene7_Outro';
+import { CalculatedTiming } from './calculate-metadata';
 
 // Load Google Fonts
 const { fontFamily: interFontFamily } = loadFont();
-const { fontFamily: jetbrainsMonoFontFamily } = loadJetBrainsMono();
 
-export const VacalibrationVideo: React.FC = () => {
+export type VacalibrationVideoProps = {
+  timing: CalculatedTiming;
+};
+
+export const VacalibrationVideo: React.FC<VacalibrationVideoProps> = ({ timing }) => {
   return (
     <div
       style={{
@@ -25,10 +29,10 @@ export const VacalibrationVideo: React.FC = () => {
         height: '100%',
       }}
     >
-      {/* Scene 1: Title & Hook (0-10 seconds) */}
+      {/* Scene 1: Title & Hook */}
       <Sequence
-        from={SCENE_TIMING.scene1.start}
-        durationInFrames={SCENE_TIMING.scene1.end - SCENE_TIMING.scene1.start}
+        from={timing.scene1.start}
+        durationInFrames={timing.scene1.end - timing.scene1.start}
       >
         <Scene1_Title />
         <Sequence from={AUDIO_DELAYS.scene1}>
@@ -37,15 +41,15 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene1.end - SCENE_TIMING.scene1.start}
+            sceneDuration={timing.scene1.end - timing.scene1.start}
           />
         </Sequence>
       </Sequence>
 
-      {/* Scene 2: The Problem (10-40 seconds) */}
+      {/* Scene 2: The Problem */}
       <Sequence
-        from={SCENE_TIMING.scene2.start}
-        durationInFrames={SCENE_TIMING.scene2.end - SCENE_TIMING.scene2.start}
+        from={timing.scene2.start}
+        durationInFrames={timing.scene2.end - timing.scene2.start}
       >
         <Scene2_Problem />
         <Sequence from={AUDIO_DELAYS.scene2}>
@@ -54,15 +58,15 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene2.end - SCENE_TIMING.scene2.start}
+            sceneDuration={timing.scene2.end - timing.scene2.start}
           />
         </Sequence>
       </Sequence>
 
-      {/* Scene 3: The Solution (40-80 seconds) */}
+      {/* Scene 3: The Solution */}
       <Sequence
-        from={SCENE_TIMING.scene3.start}
-        durationInFrames={SCENE_TIMING.scene3.end - SCENE_TIMING.scene3.start}
+        from={timing.scene3.start}
+        durationInFrames={timing.scene3.end - timing.scene3.start}
       >
         <Scene3_Solution />
         <Sequence from={AUDIO_DELAYS.scene3}>
@@ -71,15 +75,15 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene3.end - SCENE_TIMING.scene3.start}
+            sceneDuration={timing.scene3.end - timing.scene3.start}
           />
         </Sequence>
       </Sequence>
 
-      {/* Scene 4: Mathematical Framework (80-120 seconds) */}
+      {/* Scene 4: Mathematical Framework */}
       <Sequence
-        from={SCENE_TIMING.scene4.start}
-        durationInFrames={SCENE_TIMING.scene4.end - SCENE_TIMING.scene4.start}
+        from={timing.scene4.start}
+        durationInFrames={timing.scene4.end - timing.scene4.start}
       >
         <Scene4_Math />
         <Sequence from={AUDIO_DELAYS.scene4}>
@@ -88,15 +92,15 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene4.end - SCENE_TIMING.scene4.start}
+            sceneDuration={timing.scene4.end - timing.scene4.start}
           />
         </Sequence>
       </Sequence>
 
-      {/* Scene 5: Results & Impact (120-140 seconds) */}
+      {/* Scene 5: Results & Impact */}
       <Sequence
-        from={SCENE_TIMING.scene5.start}
-        durationInFrames={SCENE_TIMING.scene5.end - SCENE_TIMING.scene5.start}
+        from={timing.scene5.start}
+        durationInFrames={timing.scene5.end - timing.scene5.start}
       >
         <Scene5_Results />
         <Sequence from={AUDIO_DELAYS.scene5}>
@@ -105,15 +109,15 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene5.end - SCENE_TIMING.scene5.start}
+            sceneDuration={timing.scene5.end - timing.scene5.start}
           />
         </Sequence>
       </Sequence>
 
-      {/* Scene 6: Call to Action (140-150 seconds) */}
+      {/* Scene 6: Call to Action */}
       <Sequence
-        from={SCENE_TIMING.scene6.start}
-        durationInFrames={SCENE_TIMING.scene6.end - SCENE_TIMING.scene6.start}
+        from={timing.scene6.start}
+        durationInFrames={timing.scene6.end - timing.scene6.start}
       >
         <Scene6_CTA />
         <Sequence from={AUDIO_DELAYS.scene6}>
@@ -122,15 +126,15 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene6.end - SCENE_TIMING.scene6.start}
+            sceneDuration={timing.scene6.end - timing.scene6.start}
           />
         </Sequence>
       </Sequence>
 
-      {/* Scene 7: Credits & Outro (150-155 seconds) */}
+      {/* Scene 7: Credits & Outro */}
       <Sequence
-        from={SCENE_TIMING.scene7.start}
-        durationInFrames={SCENE_TIMING.scene7.end - SCENE_TIMING.scene7.start}
+        from={timing.scene7.start}
+        durationInFrames={timing.scene7.end - timing.scene7.start}
       >
         <Scene7_Outro />
         <Sequence from={AUDIO_DELAYS.scene7}>
@@ -139,7 +143,7 @@ export const VacalibrationVideo: React.FC = () => {
             fadeInDuration={AUDIO_VOLUME.fadeInDuration}
             fadeOutDuration={AUDIO_VOLUME.fadeOutDuration}
             volume={AUDIO_VOLUME.narration}
-            sceneDuration={SCENE_TIMING.scene7.end - SCENE_TIMING.scene7.start}
+            sceneDuration={timing.scene7.end - timing.scene7.start}
           />
         </Sequence>
       </Sequence>
